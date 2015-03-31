@@ -5,10 +5,10 @@ typedef unsigned char UInt8;
 enum Side { LEFT, RIGHT };
 enum Mode { ENCODE, DECODE };
 
-UInt32 ROL28(UInt32, UInt8);
-UInt32 ROR28(UInt32, UInt8);
+UInt32 ROL28(UInt32, UInt8); //ROtate Left through carry 28-bit number
+UInt32 ROR28(UInt32, UInt8); //ROtate Right through carry 28-bit number
 
-//UInt64 Permutation(UInt8, UInt8, UInt64, UInt8[]);
+//UInt64 Permutation(UInt8, UInt8, UInt64, UInt8[]); //Permute bits in number in conformity with permutation table
 
 //UInt64 InitialPermutation(UInt64);
 //UInt64 KeyPermutation(UInt64);
@@ -21,8 +21,8 @@ UInt32 ROR28(UInt32, UInt8);
 
 //UInt8 SBlocks(UInt8, UInt8);
 
-//UInt64 SingleDES(UInt64, UInt64, Mode);
-//UInt64 TripleDES(UInt64, UInt64, UInt64);
+//UInt64 SingleDES(UInt64, UInt64, Mode); //DES
+//UInt64 TripleDES(UInt64, UInt64, UInt64); //Three times DES
 
 UInt64 Permutation(UInt8 outputLength, UInt8 inputLength, UInt64 startSet, UInt8 sequence[])
 {
@@ -213,6 +213,7 @@ UInt64 SingleDES(UInt64 plainText, UInt64 key, Mode mode)
 	UInt64 roundkey = 0;
 	UInt32 lowPlainText = plainText & 0xFFFFFFFF;
 	UInt32 highPlainText = plainText >> 32;
+	
 	for (UInt8 i = 1; i <= 16; i++)
 	{
 		if (mode == ENCODE)
