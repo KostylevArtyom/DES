@@ -98,24 +98,24 @@ UInt64 FinalPermutation(UInt64 startSet)
 
 UInt64 CircularShift(UInt64 startSet, UInt8 roundCount, Side side)
 {
-	UInt8 i;
+	UInt8 shift;
 	if ((roundCount == 1) || (roundCount == 2) || (roundCount == 9) || (roundCount == 16))
-		i = 1;
+		shift = 1;
 	else
-		i = 2;
+		shift = 2;
 
 	UInt32 highSet = startSet >> 28;
 	UInt32 lowSet = startSet & 0xFFFFFFF;
 
 	if (side == LEFT)
 	{
-		highSet = ROL28(highSet, i);
-		lowSet = ROL28(lowSet, i);
+		highSet = ROL28(highSet, shift);
+		lowSet = ROL28(lowSet, shift);
 	}
 	else
 	{
-		highSet = ROR28(highSet, i);
-		lowSet = ROR28(lowSet, i);
+		highSet = ROR28(highSet, shift);
+		lowSet = ROR28(lowSet, shift);
 	}
 
 	startSet = highSet;
